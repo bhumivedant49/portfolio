@@ -53,6 +53,18 @@ const projects: Project[] = [
     summary: "RFM segmentation and K-Means clustering pipeline for vendor pricing strategy and customer behavior analysis.",
     stack: ["Python", "Scikit-learn", "K-Means", "RFM", "Pandas", "Matplotlib"],
     links: [{ label: "Notebook", href: "https://github.com/bhumivedant49/Smart-Negotiation-for-local-vendors/blob/main/DSPL_Project.ipynb" }]
+  },
+  {
+    title: "EtherSpend - Decentralized Expense Tracker",
+    categories: ["Full Stack"],
+    image: "/etherspend.png",
+    metric: "Smart Contract Integrated",
+    summary: "Blockchain-based expense tracker built with React and Solidity. Stores expenses on Ethereum Sepolia with MetaMask wallet integration, immutable on-chain records, and privacy-focused transaction handling.",
+    stack: ["React", "Solidity", "Ethereum", "ethers.js", "MetaMask", "Tailwind CSS", "Sepolia Test Network"],
+    links: [
+      { label: "Live Site", href: "https://ether-spend-decentralized-expense-t.vercel.app/" },
+      { label: "GitHub", href: "https://github.com/bhumivedant49/EtherSpend---Decentralized-Expense-Tracker" }
+    ]
   }
 ];
 
@@ -194,7 +206,7 @@ function App() {
 
       <section id="home" className="hero">
         <div className="heroText">
-          <span className="kicker">React + TypeScript Engineering Portfolio</span>
+          <span className="kicker">Professional Portfolio of</span>
           <h1>Bhumi Devendra Vedant</h1>
           <p className="typed">{typed}<span /></p>
           <p>
