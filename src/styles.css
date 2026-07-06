@@ -1,0 +1,372 @@
+:root {
+  --bg: #14202e;
+  --bg-2: #1e3957;
+  --panel: #2b4257;
+  --gold: #c9a84c;
+  --text: #f0ede6;
+  --muted: #a5b2bd;
+  --line: rgba(165, 178, 189, .16);
+  --shadow: 0 24px 70px rgba(0, 0, 0, .34);
+}
+
+:root[data-theme="light"] {
+  --bg: #faf8f5;
+  --bg-2: #ece5d9;
+  --panel: #ffffff;
+  --text: #14202e;
+  --muted: #46586a;
+  --line: rgba(20, 32, 46, .14);
+  --shadow: 0 24px 70px rgba(20, 32, 46, .16);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 clamp(18px, 4vw, 54px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-weight: 800;
+  font-size: 22px;
+}
+.nav div { display: flex; flex-wrap: wrap; gap: 18px; }
+.nav a:not(.brand) { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.nav a:hover { color: var(--gold); }
+.nav button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.hero {
+  min-height: calc(100vh - 72px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 390px);
+  gap: clamp(28px, 6vw, 82px);
+  align-items: center;
+  padding: clamp(54px, 8vw, 110px) clamp(20px, 6vw, 90px);
+  background: radial-gradient(circle at 18% 20%, rgba(201, 168, 76, .14), transparent 32%), linear-gradient(135deg, #14202e, #1e3957);
+  color: #f0ede6;
+}
+.hero h1, .sectionHead h2, .contact h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(44px, 8vw, 92px);
+  line-height: 1;
+  margin: 12px 0;
+}
+.hero p { color: rgba(255,255,255,.88); max-width: 760px; line-height: 1.75; }
+.typed { color: var(--gold) !important; font-weight: 900; min-height: 30px; }
+.typed span::after { content: ""; display: inline-block; width: 2px; height: 1em; background: var(--gold); margin-left: 4px; transform: translateY(3px); animation: blink 1s steps(2) infinite; }
+.kicker { display: inline-block; color: var(--gold); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.actions a, .projectLinks a, .gameOverlay a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 6px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: #14202e;
+  font-weight: 900;
+}
+.actions a:nth-child(2), .actions a:nth-child(3), .projectLinks a, .gameOverlay a {
+  background: transparent;
+  color: var(--gold);
+}
+.hero img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow);
+}
+
+.section { padding: clamp(70px, 9vw, 120px) clamp(20px, 6vw, 90px); }
+.sectionHead { max-width: 790px; margin-bottom: 34px; }
+.sectionHead h2 { font-size: clamp(34px, 5vw, 62px); }
+.sectionHead p, .project p, .experienceCard p, .achievementCard p { color: var(--muted); line-height: 1.7; }
+
+.experienceGrid { display: grid; gap: 18px; }
+.experienceCard, .skillGroup, .project, .achievementCard, .statsRow div, .contact form {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.experienceCard {
+  display: grid;
+  grid-template-columns: minmax(220px, 310px) 1fr minmax(220px, 320px);
+  gap: 22px;
+  align-items: start;
+}
+.experienceCard h3, .skillGroup h3, .project h3, .achievementCard h3 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 24px;
+}
+.experienceCard strong {
+  display: block;
+  color: var(--gold);
+  margin: 8px 0;
+}
+.experienceCard ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.experienceCard li {
+  color: var(--text);
+  position: relative;
+  padding-left: 18px;
+  line-height: 1.6;
+}
+.experienceCard li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .72em;
+  width: 8px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.skillsSection {
+  background: linear-gradient(135deg, #1e3957, #14202e);
+  color: #f0ede6;
+}
+.skillsSection .sectionHead h2 { color: #ffffff; }
+.skillsSection .sectionHead p { color: rgba(255,255,255,.82); }
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.skillsSection .skillGroup {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.16);
+}
+.skillGroup div, .pills, .projectLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.skillGroup span, .pills span {
+  padding: 7px 10px;
+  background: rgba(136,169,195,.12);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+.skillsSection .skillGroup span {
+  color: #f0ede6;
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.18);
+}
+
+.filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.filters button {
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: var(--panel);
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 800;
+}
+.filters button.active { color: #14202e; background: var(--gold); border-color: var(--gold); }
+.projects { display: grid; gap: 26px; }
+.project {
+  display: grid;
+  grid-template-columns: minmax(260px, 390px) 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.project img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; filter: saturate(.85); }
+.project strong { display: inline-block; color: var(--gold); margin: 10px 0; }
+.projectLinks a { min-height: 34px; font-size: 12px; }
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.statsRow div { text-align: center; }
+.statsRow strong {
+  display: block;
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 46px;
+  line-height: 1;
+}
+.statsRow span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.achievementGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.achievementCard {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 18px;
+  align-items: center;
+}
+.achievementCard img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.simulatorSection { background: var(--bg); }
+.arcade {
+  max-width: 850px;
+  margin: 0 auto;
+  background: #f8f5ee;
+  color: #14202e;
+  border: 1px solid rgba(20,32,46,.12);
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+:root[data-theme="light"] .simulatorSection,
+:root[data-theme="light"] .simulatorSection .sectionHead h2,
+:root[data-theme="light"] .simulatorSection .sectionHead p {
+  background: #14202e;
+  color: #f0ede6;
+}
+:root[data-theme="light"] .arcade {
+  background: #101a26;
+  color: #f0ede6;
+  border-color: rgba(240,237,230,.16);
+}
+.arcadeHud { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid rgba(20,32,46,.12); padding-bottom: 16px; margin-bottom: 18px; }
+.arcadeHud span { border: 1px solid rgba(201,168,76,.25); border-radius: 999px; padding: 7px 14px; color: var(--gold); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.canvasWrap { position: relative; aspect-ratio: 4 / 3; border: 1px solid rgba(20,32,46,.14); overflow: hidden; background: #14202e; }
+.canvasWrap canvas { width: 100%; height: 100%; display: block; }
+.gameOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 26px;
+  background: color-mix(in srgb, #f8f5ee 96%, transparent);
+}
+:root[data-theme="light"] .gameOverlay { background: color-mix(in srgb, #101a26 96%, transparent); color: #f0ede6; }
+.gameOverlay h3 { font-family: Georgia, serif; font-size: clamp(34px, 6vw, 58px); color: var(--gold); margin: 0; }
+.trophy { font-size: 58px; color: var(--gold); }
+.credentialBox {
+  width: min(560px, 100%);
+  text-align: left;
+  border: 1px solid rgba(20,32,46,.12);
+  border-radius: 6px;
+  padding: 18px 20px;
+  background: rgba(255,255,255,.55);
+}
+:root[data-theme="light"] .credentialBox { background: rgba(255,255,255,.06); border-color: rgba(240,237,230,.14); }
+.credentialBox span { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-size: 11px; font-weight: 900; }
+.credentialBox p { margin: 12px 0 0; color: inherit; line-height: 1.45; }
+.gameOverlay button {
+  min-height: 54px;
+  padding: 0 28px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: #14202e;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.arcadeHelp { display: flex; justify-content: space-between; gap: 14px; margin-top: 16px; color: #46586a; font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+:root[data-theme="light"] .arcadeHelp { color: #a5b2bd; }
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  background: linear-gradient(135deg, #1e3957, #14202e);
+  color: #f7f3ea;
+}
+.contact h2 { color: #ffffff; }
+.contact p { color: rgba(255,255,255,.88); }
+.contact form { display: grid; gap: 14px; background: #f8f5ee; }
+.contact input, .contact textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(20,32,46,.25);
+  background: transparent;
+  padding: 14px 0;
+  color: #14202e;
+  outline: 0;
+}
+.contact textarea { min-height: 120px; resize: vertical; }
+.contact button {
+  border: 0;
+  min-height: 50px;
+  background: var(--gold);
+  color: #14202e;
+  font-weight: 900;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (max-width: 980px) {
+  .hero, .project, .contact { grid-template-columns: 1fr; }
+  .experienceCard { grid-template-columns: 1fr; }
+  .skillsGrid, .achievementGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .nav div { display: none; }
+  .skillsGrid, .achievementGrid, .statsRow { grid-template-columns: 1fr; }
+  .achievementCard { grid-template-columns: 1fr; }
+  .arcade { padding: 14px; }
+  .arcadeHelp { flex-direction: column; }
+}
