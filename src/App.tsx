@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 type ProjectCategory = "AI/ML" | "Agentic AI" | "Data Science" | "Full Stack";
 
@@ -190,7 +191,9 @@ function App() {
   }, [theme]);
 
   return (
-    <main>
+    <>
+      <SpeedInsights />
+      <main>
       <nav className="nav">
         <a href="#home" className="brand">BV</a>
         <div>
@@ -329,6 +332,7 @@ function App() {
         </form>
       </section>
     </main>
+    </>
   );
 }
 
