@@ -66,6 +66,18 @@ const projects: Project[] = [
       { label: "Live Site", href: "https://ether-spend-decentralized-expense-t.vercel.app/" },
       { label: "GitHub", href: "https://github.com/bhumivedant49/EtherSpend---Decentralized-Expense-Tracker" }
     ]
+  },
+  {
+    title: "Career Compass — AI Career Assistant",
+    categories: ["Full Stack", "Agentic AI"],
+    image: "/career_compass.png",
+    metric: "ATS Scoring Engine",
+    summary: "Built a full-stack career management platform that parses resumes, calculates transparent ATS scores, identifies skill gaps, and provides AI coaching.",
+    stack: ["Java 21", "Spring Boot", "React", "Vite", "MySQL", "JWT", "Gemini AI"],
+    links: [
+      { label: "GitHub", href: "https://github.com/bhumivedant49/ai-career-assistant" },
+      { label: "Live Site", href: "https://careercompass-xyz.vercel.app" }
+    ]
   }
 ];
 
@@ -144,6 +156,17 @@ const achievements = [
   }
 ];
 
+const publications = [
+  {
+    title: "AI-Driven Social Media Marketing Assistant Using Agentic Workflows and Long-Term Memory",
+    venue: "IEEE CICN 2026 — Manila, Philippines",
+    meta: "Bhumi Vedant (Primary Author), Harshal Shirole, Paras Kadam, Anuj Kadu, Archana Shirke, Priyamvada Singh",
+    summary: "Describes an agentic workflow architecture for social media automation that adapts, reasons, and waits for human input before publishing — featuring a three-tier subscription model, automated daily content pipelines, persistent state management, and multi-platform publishing.",
+    doi: "https://doi.org/10.1109/CICN70047.2026.11594391",
+    tags: ["Primary Author", "In-Person Presentation", "Peer Reviewed", "June 2026"]
+  }
+];
+
 const credentials = [
   "FastAPI backend efficiency verified: Core signal parsing and API design matches production excellence!",
   "Google Cloud automation verified: Agentic pipelines are robustly structured and deployed.",
@@ -201,6 +224,7 @@ function App() {
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
           <a href="#achievements">Achievements</a>
+          <a href="#publications">Publications</a>
           <a href="#simulator">Simulator</a>
           <a href="#contact">Contact</a>
         </div>
@@ -283,9 +307,9 @@ function App() {
           <h2>Impact beyond the classroom.</h2>
         </div>
         <div className="statsRow">
-          <div><strong>2+</strong><span>Years Experience</span></div>
-          <div><strong>4</strong><span>Internships</span></div>
-          <div><strong>4</strong><span>Projects</span></div>
+          <div><strong>3+</strong><span>Years Experience</span></div>
+          <div><strong>7+</strong><span>Certifications</span></div>
+          <div><strong>5</strong><span>Projects</span></div>
           <div><strong>2</strong><span>Awards</span></div>
         </div>
         <div className="achievementGrid">
@@ -296,6 +320,27 @@ function App() {
                 <span className="kicker">{achievement.meta}</span>
                 <h3>{achievement.title}</h3>
                 <p>{achievement.summary}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="publications" className="section publicationsSection">
+        <div className="sectionHead">
+          <span className="kicker">Research & Publications</span>
+          <h2>Contributing to the global body of knowledge.</h2>
+        </div>
+        <div className="publicationGrid">
+          {publications.map((pub) => (
+            <article key={pub.title} className="publicationCard">
+              <div>
+                <span className="kicker">{pub.venue}</span>
+                <h3>{pub.title}</h3>
+                <strong style={{ display: "block", marginBottom: "12px", color: "var(--text)" }}>{pub.meta}</strong>
+                <p>{pub.summary}</p>
+                <a href={pub.doi} target="_blank" rel="noreferrer" style={{ color: "var(--gold)", display: "block", marginBottom: "16px", fontSize: "0.85rem" }}>DOI: {pub.doi.replace("https://doi.org/", "")}</a>
+                <div className="pills">{pub.tags.map(t => <span key={t}>{t}</span>)}</div>
               </div>
             </article>
           ))}

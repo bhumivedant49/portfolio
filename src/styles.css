@@ -261,6 +261,31 @@ button, input, textarea { font: inherit; }
   border-radius: 8px;
 }
 
+.publicationsSection { background: linear-gradient(135deg, #14202e, #1e3957); color: #f0ede6; }
+.publicationsSection .sectionHead h2 { color: #ffffff; }
+.publicationsSection .sectionHead p { color: rgba(255,255,255,.82); }
+.publicationGrid {
+  display: grid;
+  gap: 20px;
+}
+.publicationCard {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 26px;
+}
+.publicationCard h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  margin: 6px 0 8px;
+  color: #fff;
+}
+.publicationCard p {
+  color: rgba(255,255,255,.82);
+  line-height: 1.6;
+}
+
 .simulatorSection { background: var(--bg); }
 .arcade {
   max-width: 850px;
