@@ -11,22 +11,24 @@ type Project = {
   summary: string;
   stack: string[];
   links: { label: string; href: string }[];
+  status?: string;
 };
 
 const designations = ["Software Engineer", "AI/ML Developer", "Full-Stack Engineer", "IoT Builder"];
 
 const projects: Project[] = [
   {
-    title: "AI Currency Detection for the Visually Impaired",
-    categories: ["AI/ML"],
-    image: "/currency_detection_project.jpg",
-    metric: "93.8% accuracy",
-    summary: "Mobile + IoT assistive system using YOLOv8 to identify Indian currency in real time for visually impaired users.",
-    stack: ["YOLOv8", "Kotlin", "TensorFlow", "OpenCV", "IoT", "Android"],
+    title: "Career Compass — Resume Parsing & ATS Scoring Platform",
+    categories: ["Full Stack"],
+    image: "/career_compass.png",
+    metric: "ATS Scoring Engine",
+    summary: "Built a full-stack career management platform that parses resumes (PDFBox/POI), calculates transparent ATS scores, identifies skill gaps, and implements JWT-based auth with MySQL persistence.",
+    stack: ["Java 21", "Spring Boot 3.5", "Spring Data JPA", "React", "Vite", "MySQL 8", "Flyway", "Apache PDFBox 3", "Apache POI 5", "jjwt 0.13", "BCrypt"],
     links: [
-      { label: "GitHub", href: "https://github.com/ReebaPatel/Currency-Detection-App/tree/master" },
-      { label: "Demo", href: "https://www.youtube.com/watch?v=vTw1TWwg6f8" }
-    ]
+      { label: "GitHub", href: "https://github.com/bhumivedant49/ai-career-assistant" }
+      /* <!-- NEEDS CONFIRMATION: has the Spring Security default-credential warning on career-assistant-api been resolved? Do not re-enable Live Site link until confirmed. --> */
+    ],
+    status: "In Progress"
   },
   {
     title: "Agentic AI Marketing Assistant",
@@ -36,6 +38,18 @@ const projects: Project[] = [
     summary: "Production fintech content application that orchestrates live market research, LLM generation, scheduling, and publishing.",
     stack: ["Python", "FastAPI", "OpenAI GPT", "LangChain", "SERP API", "GNews", "n8n", "GCP", "CI/CD"],
     links: [{ label: "Live Site", href: "https://content.decuple.work/" }]
+  },
+  {
+    title: "AI Currency Detection for the Visually Impaired",
+    categories: ["AI/ML"],
+    image: "/currency_detection_project.jpg",
+    metric: "93.8% accuracy",
+    summary: "Mobile + IoT assistive system using YOLOv8 to identify Indian currency in real time for visually impaired users.",
+    stack: ["YOLOv8", "Java", "TensorFlow", "OpenCV", "IoT", "Android"],
+    links: [
+      { label: "GitHub", href: "https://github.com/ReebaPatel/Currency-Detection-App/tree/master" },
+      { label: "Demo", href: "https://www.youtube.com/watch?v=vTw1TWwg6f8" }
+    ]
   },
   {
     title: "Market Research Automation Agent",
@@ -65,18 +79,6 @@ const projects: Project[] = [
     links: [
       { label: "Live Site", href: "https://ether-spend-decentralized-expense-t.vercel.app/" },
       { label: "GitHub", href: "https://github.com/bhumivedant49/EtherSpend---Decentralized-Expense-Tracker" }
-    ]
-  },
-  {
-    title: "Career Compass — AI Career Assistant",
-    categories: ["Full Stack", "Agentic AI"],
-    image: "/career_compass.png",
-    metric: "ATS Scoring Engine",
-    summary: "Built a full-stack career management platform that parses resumes, calculates transparent ATS scores, identifies skill gaps, and provides AI coaching.",
-    stack: ["Java 21", "Spring Boot", "React", "Vite", "MySQL", "JWT", "Gemini AI"],
-    links: [
-      { label: "GitHub", href: "https://github.com/bhumivedant49/ai-career-assistant" },
-      { label: "Live Site", href: "https://careercompass-xyz.vercel.app" }
     ]
   }
 ];
@@ -121,10 +123,11 @@ const experiences = [
 ];
 
 const skillGroups = [
-  { title: "Languages", items: ["Python", "JavaScript", "TypeScript", "Node.js", "Java", "PHP", "C/C++"] },
+  { title: "Languages", items: ["Python", "JavaScript", "TypeScript (used for this site)", "Node.js", "Java", "PHP", "C/C++"] },
   { title: "Frontend & UX", items: ["React", "Vite", "Component Architecture", "Responsive Design", "Canvas API", "Data-Driven UI", "Web APIs", "Accessibility-minded UI"] },
   { title: "AI/ML & Computer Vision", items: ["Machine Learning", "YOLOv8", "OpenCV", "TensorFlow", "Scikit-learn", "Roboflow", "RFM Segmentation", "K-Means Clustering"] },
-  { title: "Agentic AI & Backend", items: ["FastAPI", "Flask", "LangChain", "OpenAI GPT", "REST APIs", "Prompt Engineering", "LLM APIs", "n8n Workflow Automation"] },
+  { title: "Agentic AI", items: ["FastAPI", "Flask", "LangChain", "OpenAI GPT", "REST APIs", "Prompt Engineering", "LLM APIs", "n8n Workflow Automation"] },
+  { title: "Backend & APIs", items: ["API Design", "Spring Boot", "Spring Security", "JWT", "React", "MySQL", "Vite"] },
   { title: "Cloud, DevOps & Databases", items: ["GCP", "AWS", "Azure", "Docker", "CI/CD", "MySQL", "PostgreSQL", "MongoDB", "Git", "Postman"] },
   { title: "IoT & Embedded Systems", items: ["BLE", "RFID", "MQTT", "IoT System Design", "Kalman Filtering", "Signal Processing"] }
 ];
@@ -202,16 +205,73 @@ function useTypewriter(words: string[]) {
   return text;
 }
 
+function StatCounter({ target, label, prefix = "", suffix = "" }: { target: number, label: string, prefix?: string, suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        let start = 0;
+        const duration = 1500;
+        const increment = target / (duration / 16);
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            setCount(target);
+            clearInterval(timer);
+          } else {
+            setCount(Math.floor(start));
+          }
+        }, 16);
+        observer.disconnect();
+      }
+    });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target]);
+  
+  return <div ref={ref}><strong>{prefix}{count}{suffix}</strong><span>{label}</span></div>;
+}
+
+function useScrollSpy() {
+  const [activeId, setActiveId] = useState("");
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -40% 0px" }
+    );
+    document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+  return activeId;
+}
+
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
   const [filter, setFilter] = useState<ProjectCategory | "All">("All");
   const typed = useTypewriter(designations);
   const visibleProjects = useMemo(() => filter === "All" ? projects : projects.filter((project) => project.categories.includes(filter)), [filter]);
+  const activeSection = useScrollSpy();
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -220,22 +280,23 @@ function App() {
       <nav className="nav">
         <a href="#home" className="brand">BV</a>
         <div>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#achievements">Achievements</a>
-          <a href="#publications">Publications</a>
-          <a href="#simulator">Simulator</a>
-          <a href="#contact">Contact</a>
+          <a href="#experience" className={activeSection === "experience" ? "activeNav" : ""}>Experience</a>
+          <a href="#skills" className={activeSection === "skills" ? "activeNav" : ""}>Skills</a>
+          <a href="#projects" className={activeSection === "projects" ? "activeNav" : ""}>Projects</a>
+          <a href="#achievements" className={activeSection === "achievements" ? "activeNav" : ""}>Achievements</a>
+          <a href="#publications" className={activeSection === "publications" ? "activeNav" : ""}>Publications</a>
+          <a href="#simulator" className={activeSection === "simulator" ? "activeNav" : ""}>Simulator</a>
+          <a href="#contact" className={activeSection === "contact" ? "activeNav" : ""}>Contact</a>
         </div>
         <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label="Toggle theme">{theme === "dark" ? "☾" : "☀"}</button>
       </nav>
 
       <section id="home" className="hero">
-        <div className="heroText">
+        <div className="heroText fade-up">
           <span className="kicker">Professional Portfolio of</span>
           <h1>Bhumi Devendra Vedant</h1>
           <p className="typed">{typed}<span /></p>
+          <div className="availability-strip">🚀 Actively seeking Backend / AI-ML / Full-Stack SWE roles — open to relocation across India.</div>
           <p>
             Results-driven software engineer with hands-on experience across fintech, AI/ML, computer vision, full-stack systems, cloud deployment, and IoT.
             This portfolio is built as an interactive product experience, not a static document.
@@ -250,13 +311,13 @@ function App() {
       </section>
 
       <section id="experience" className="section experienceSection">
-        <div className="sectionHead">
+        <div className="sectionHead fade-up">
           <span className="kicker">Work Experience</span>
           <h2>Internships across fintech, computer vision, platforms, and IoT.</h2>
         </div>
         <div className="experienceGrid">
-          {experiences.map((experience) => (
-            <article key={experience.role} className="experienceCard">
+          {experiences.map((experience, i) => (
+            <article key={experience.role} className="experienceCard fade-up" style={{ transitionDelay: `${i * 100}ms` }}>
               <div>
                 <span className="kicker">{experience.type}</span>
                 <h3>{experience.role}</h3>
@@ -271,14 +332,14 @@ function App() {
       </section>
 
       <section id="skills" className="section skillsSection">
-        <div className="sectionHead">
+        <div className="sectionHead fade-up">
           <span className="kicker">Technical Skills</span>
           <h2>Combined skill stack from academics, internships, projects, and this build.</h2>
           <p>Grouped as a practical engineering toolkit rather than a separate explanation of the website itself.</p>
         </div>
         <div className="skillsGrid">
-          {skillGroups.map((group) => (
-            <article key={group.title} className="skillGroup">
+          {skillGroups.map((group, i) => (
+            <article key={group.title} className="skillGroup fade-up" style={{ transitionDelay: `${i * 50}ms` }}>
               <h3>{group.title}</h3>
               <div>{group.items.map((item) => <span key={item}>{item}</span>)}</div>
             </article>
@@ -287,7 +348,7 @@ function App() {
       </section>
 
       <section id="projects" className="section">
-        <div className="sectionHead">
+        <div className="sectionHead fade-up">
           <span className="kicker">Project Explorer</span>
           <h2>Filter by domain and inspect implementation evidence.</h2>
         </div>
@@ -297,24 +358,32 @@ function App() {
           ))}
         </div>
         <div className="projects">
-          {visibleProjects.map((project) => <ProjectCard key={project.title} project={project} />)}
+          {visibleProjects.slice(0, 4).map((project) => <ProjectCard key={project.title} project={project} />)}
         </div>
+        {visibleProjects.length > 4 && (
+          <details className="moreProjectsDetails">
+            <summary>View More Projects</summary>
+            <div className="projects" style={{ marginTop: '26px' }}>
+              {visibleProjects.slice(4).map((project) => <ProjectCard key={project.title} project={project} />)}
+            </div>
+          </details>
+        )}
       </section>
 
       <section id="achievements" className="section achievementsSection">
-        <div className="sectionHead">
+        <div className="sectionHead fade-up">
           <span className="kicker">Achievements & Recognition</span>
           <h2>Impact beyond the classroom.</h2>
         </div>
-        <div className="statsRow">
-          <div><strong>3+</strong><span>Years Experience</span></div>
-          <div><strong>7+</strong><span>Certifications</span></div>
-          <div><strong>5</strong><span>Projects</span></div>
-          <div><strong>2</strong><span>Awards</span></div>
+        <div className="statsRow fade-up">
+          <StatCounter target={4} label="Internships" />
+          <StatCounter target={6} label="Certifications" />
+          <StatCounter target={5} label="Projects" />
+          <StatCounter target={2} label="Awards" />
         </div>
         <div className="achievementGrid">
-          {achievements.map((achievement) => (
-            <article key={achievement.title} className="achievementCard">
+          {achievements.map((achievement, i) => (
+            <article key={achievement.title} className="achievementCard fade-up" style={{ transitionDelay: `${i * 100}ms` }}>
               <img src={achievement.image} alt={achievement.title} />
               <div>
                 <span className="kicker">{achievement.meta}</span>
@@ -327,11 +396,11 @@ function App() {
       </section>
 
       <section id="publications" className="section publicationsSection">
-        <div className="sectionHead">
+        <div className="sectionHead fade-up">
           <span className="kicker">Research & Publications</span>
           <h2>Contributing to the global body of knowledge.</h2>
         </div>
-        <div className="publicationGrid">
+        <div className="publicationGrid fade-up">
           {publications.map((pub) => (
             <article key={pub.title} className="publicationCard">
               <div>
@@ -348,7 +417,7 @@ function App() {
       </section>
 
       <section id="simulator" className="section simulatorSection">
-        <div className="sectionHead">
+        <div className="sectionHead fade-up">
           <span className="kicker">Interactive Simulator</span>
           <h2>Agentic AI Arcade.</h2>
           <p>Canvas API, collision detection, keyboard/pointer controls, localStorage high score, and score-based credential unlocking.</p>
@@ -393,11 +462,14 @@ function App() {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project">
+    <article className="project fade-up">
       <img src={project.image} alt={project.title} />
       <div>
-        <span className="kicker">{project.categories.join(" / ")}</span>
-        <h3>{project.title}</h3>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '8px' }}>
+          <span className="kicker" style={{ margin: 0 }}>{project.categories.join(" / ")}</span>
+          {project.status && <span className="statusBadge">{project.status}</span>}
+        </div>
+        <h3 style={{ margin: '4px 0 10px' }}>{project.title}</h3>
         <strong>{project.metric}</strong>
         <p>{project.summary}</p>
         <div className="pills">{project.stack.map((tech) => <span key={tech}>{tech}</span>)}</div>
