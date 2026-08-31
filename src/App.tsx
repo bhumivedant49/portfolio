@@ -243,7 +243,7 @@ function App() {
           <div className="actions">
             <a href="#experience">View Experience</a>
             <a href="#simulator">Play Simulator 👾</a>
-            <a href="/resume.pdf" target="_blank" rel="noreferrer">Open Resume</a>
+            <a href="https://drive.google.com/file/d/1FOedvL-Vubzqs-GpwTu3r_Kvk8Ww24-W/view?usp=sharing" target="_blank" rel="noreferrer">Open Resume</a>
           </div>
         </div>
         <img src="/bhumi_profile.jpg" alt="Bhumi Vedant" />
