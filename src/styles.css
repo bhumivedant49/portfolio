@@ -45,15 +45,16 @@ button, input, textarea { font: inherit; }
   border-bottom: 1px solid var(--line);
 }
 .brand {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-family: Georgia, serif;
-  font-weight: 800;
-  font-size: 22px;
+  display: flex;
+  align-items: center;
+}
+.brand img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+:root[data-theme="light"] .brand img {
+  filter: invert(1) hue-rotate(180deg);
 }
 .nav div { display: flex; flex-wrap: wrap; gap: 18px; }
 .nav a:not(.brand) { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }

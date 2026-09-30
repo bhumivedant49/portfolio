@@ -278,7 +278,7 @@ function App() {
       <SpeedInsights />
       <main>
       <nav className="nav">
-        <a href="#home" className="brand">BV</a>
+        <a href="#home" className="brand"><img src="/logo.png" alt="BV" /></a>
         <div>
           <a href="#experience" className={activeSection === "experience" ? "activeNav" : ""}>Experience</a>
           <a href="#skills" className={activeSection === "skills" ? "activeNav" : ""}>Skills</a>
